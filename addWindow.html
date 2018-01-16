@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Change Time and Date</title>
+</head>
+
+<body>
+    <div>
+        Current Time:
+        <div>
+            <b>Date (dd/mm/yyyy):</b> 
+            <a id="actualDate"></a> /
+            <a id="actualMonth"></a> /
+            <a id="actualYear"></a> <br/>
+            <b>Time:</b>
+            <a id="actualHour"></a> : 
+            <a id="actualMinute"></a> : 
+            <a id="actualSecond"></a>         
+        </div>
+    </div>
+    <br/>
+
+    <div>
+            <div>
+                <input type="checkbox" id="dateToggle"/>
+                <span>Allow Changes to Date</span>
+                <br/>
+                <label>Enter New Date:</label>
+                <input type="text" name="date" id="date" />
+            </div>
+            <br/>
+            <div>
+                <input type="checkbox" id="monthToggle"/>
+                <span>Allow Changes to Month</span>
+                <br/>
+                <label>Enter New Month:</label>
+                <input type="text" name="month" id="month" />
+            </div>
+            <br/>
+
+            <div>
+                <input type="checkbox" id="yearToggle"/>
+                <span>Allow Changes to Year</span>
+                <br/>
+                <label>Enter Year:</label>
+                <input type="text" name="year" id="year" />
+            </div>
+            <br/>
+        
+            <div>
+                <input type="checkbox" id="hourToggle"/>
+                <span>Make Changes to Hours</span>
+                <br/>
+                <label>Enter Hours:</label>
+                <input type="text" name="hour" id="hour" />
+            </div>
+            <br/>
+
+            <div>
+                <input type="checkbox" id="minuteToggle"/>
+                <span>Allow Changes to Minutes</span>
+                <br/>
+                <label>Enter Minutes:</label>
+                <input type="text" name="minute" id="minute" />
+            </div>
+            <br/>
+
+            <div>
+                <input type="checkbox" id="secondToggle"/>
+                <span>Allow Changes to Seconds</span>
+                <br/>
+                <label>Enter Seconds:</label>
+                <input type="text" name="second" id="second" />
+            </div>
+            <br/>
+            <p><b>Note: </b> Only those fields that are ticked will be changed</p>
+            <button onclick="submitForm()">Change All</button>
+            <button onclick="resetTime()">Reset Time</button>
+            <button onclick="cancel()">Cancel</button>
+        </form>
+    </div>
+</body>
+<script>
+    var $ = function(id) {return document.getElementById(id);};
+    var electron = require('electron');
+    var ipcRenderer = electron.ipcRenderer;
+
+    function submitForm() {
+        var arr = [];
+        var pushing = function(str) {
+            $(str+'Toggle').checked ? arr.push( parseInt( $(str).value )) : arr.push(null) ;
+        };
+        var time = new Date();
+        pushing('date');
+        pushing('month');
+        pushing('year');
+        pushing('hour');
+        pushing('minute');
+        pushing('second');
+        
+        ipcRenderer.send('changeTime', arr);
+        window.close();
+    }
+
+    function resetTime() {
+        ipcRenderer.send('resetTime');
+        window.close();
+    }
+
+    function cancel(){
+        window.close();
+    }
+
+    setInterval(function(){
+        var time = new Date();
+        document.getElementById('actualDate').innerHTML = time.getDate();
+        document.getElementById('actualMonth').innerHTML = time.getMonth();
+        document.getElementById('actualYear').innerHTML = time.getFullYear();
+        document.getElementById('actualHour').innerHTML = time.getHours()%12 + " hours";
+        document.getElementById('actualMinute').innerHTML = time.getMinutes() + " minutes";
+        document.getElementById('actualSecond').innerHTML = time.getSeconds() + " seconds";
+    },1000)   
+    
+    var time = new Date();
+    document.getElementById('date').value = time.getDate();
+    document.getElementById('month').value = time.getMonth() + 1;
+    document.getElementById('year').value = time.getFullYear();
+    document.getElementById('hour').value = time.getHours() %12;
+    document.getElementById('minute').value = time.getMinutes();
+    document.getElementById('second').value = time.getSeconds();
+    
+    
+
+
+
+</script>
+
+</html>

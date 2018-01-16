@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <title>The Clock!</title>
+        <link rel="stylesheet" href="assets/css/main.css">
+    </head>
+
+    <body style="margin:0;height:125px; width: 125px;" onmousedown="mDown(this)" onmouseup="mUp(this)" onclick="stay(this)">
+        <canvas id="clock" width="121" height="121" ></canvas>
+    </body>
+
+    
+    <script>
+        var electron = require('electron');
+        var ipcRenderer = electron.ipcRenderer;
+        var ev;
+        function mDown(obj){
+            ev = setInterval(()=>ipcRenderer.send('dragon'), 16.66666 /*execute every 100ms*/);
+        }
+
+        function stay(obj){
+            ipcRenderer.send('stayStill');
+        }
+
+        function mUp(obj){
+            clearInterval(ev);
+        }
+
+        
+    </script>
+    <script src="assets/js/index.main.js"></script>
+</html>
