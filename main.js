@@ -26,8 +26,8 @@ let tray = null;
 app.on('ready', ()=>{
     // Create a new window
     mainWindow = new BrowserWindow({
-        // frame: false,
-        // transparent: true,
+        frame: false,
+        transparent: true,
         width:160,
         height: 180,
         alwaysOnTop: true,
