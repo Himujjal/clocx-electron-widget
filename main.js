@@ -26,11 +26,10 @@ let tray = null;
 app.on('ready', ()=>{
     // Create a new window
     mainWindow = new BrowserWindow({
-        frame: false,
-        transparent: true,
-        kiosk: true,
-        width:130,
-        height: 130,
+        // frame: false,
+        // transparent: true,
+        width:160,
+        height: 180,
         alwaysOnTop: true,
         skipTaskbar: true
     });
