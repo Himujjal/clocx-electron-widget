@@ -23,14 +23,17 @@ let inProd = process.env.NODE_ENV === 'production';
 
 // Listen for the app to be ready
 let tray = null;
+app.commandLine.appendSwitch('enable-transparent-visuals');
+app.disableHardwareAcceleration();
 app.on('ready', ()=>{
     // Create a new window
     mainWindow = new BrowserWindow({
         frame: false,
         transparent: true,
-        width:160,
+        width:180,
         height: 180,
         alwaysOnTop: true,
+        // show: false,
         skipTaskbar: true
     });
     
@@ -98,8 +101,6 @@ app.on('ready', ()=>{
     if(!inProd) mainWindow.openDevTools({detach: true})
     
 });
-
-
 
 
 
