@@ -22,9 +22,9 @@
     "7zip-bin-mac" "^1.0.1"
     "7zip-bin-win" "^2.1.1"
 
-"@types/node@^7.0.18":
-  version "7.0.52"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.52.tgz#8990d3350375542b0c21a83cd0331e6a8fc86716"
+"@types/node@^8.0.24":
+  version "8.10.51"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.10.51.tgz#80600857c0a47a8e8bafc2dae6daed6db58e3627"
 
 ajv-keywords@^2.1.1:
   version "2.1.1"
@@ -540,11 +540,11 @@ electron-publish@19.53.7:
     fs-extra-p "^4.5.0"
     mime "^2.2.0"
 
-electron@^1.7.10:
-  version "1.7.10"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-1.7.10.tgz#3a3e83d965fd7fafe473be8ddf8f472561b6253d"
+electron@^1.8.8:
+  version "1.8.8"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-1.8.8.tgz#a90cddb075291f49576993e6f5c8bb4439301cae"
   dependencies:
-    "@types/node" "^7.0.18"
+    "@types/node" "^8.0.24"
     electron-download "^3.0.1"
     extract-zip "^1.0.3"
 
